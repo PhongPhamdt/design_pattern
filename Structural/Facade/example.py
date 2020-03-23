@@ -1,22 +1,27 @@
 # Complex parts
 class CPU:
-    def freeze(self):
+    @staticmethod
+    def freeze():
         print("FREEZE")
 
-    def jump(self, position):
+    @staticmethod
+    def jump(position):
         print("Jump to {}".format(position))
 
-    def execute(self):
+    @staticmethod
+    def execute():
         print("EXECUTE")
 
 
 class Memory:
-    def load(self, position, data):
+    @staticmethod
+    def load(position, data):
         print("Load {} from {}".format(data, position))
 
 
 class HardDrive:
-    def read(self, lba, size):
+    @staticmethod
+    def read(lba, size):
         print("Read {} {}".format(size, lba))
 
 

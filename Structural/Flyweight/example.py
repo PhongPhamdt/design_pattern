@@ -5,7 +5,7 @@ class Spam(object):
 
 
 class SpamFactory(object):
-    def  __init__(self):
+    def __init__(self):
         self.__instances = dict()
 
     def get_instance(self, a, b):
@@ -23,6 +23,7 @@ class Egg(object):
 class EggFactory(object):
     def __init__(self):
         self.__instances = dict()
+
     def get_instance(self, x, y):
         if (x, y) not in self.__instances:
             self.__instances[(x, y)] = Egg(x, y)

@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
 
+# Command
 class Command:
     @abstractmethod
     def execute(self):
@@ -8,31 +9,35 @@ class Command:
 
 
 class LunchCommand(Command):
-    def __init__(self, lunch):
-        self.lunch = lunch
+    def __init__(self, receiver_lunch):
+        self.lunch = receiver_lunch
 
     def execute(self):
         self.lunch.make_lunch()
 
 
 class DinnerCommand(Command):
-    def __init__(self, dinner):
-        self.dinner = dinner
+    def __init__(self, receiver_dinner):
+        self.dinner = receiver_dinner
 
     def execute(self):
         self.dinner.make_dinner()
 
 
+# Listener
 class Lunch:
-    def make_lunch(self):
+    @staticmethod
+    def make_lunch():
         print("Lunch is being made")
 
 
 class Dinner:
-    def make_dinner(self):
+    @staticmethod
+    def make_dinner():
         print("Dinner is being made")
 
 
+# Invoker
 class MealInvoker:
     def __init__(self, command):
         self.command = command

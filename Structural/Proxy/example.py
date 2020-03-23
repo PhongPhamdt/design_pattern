@@ -3,6 +3,11 @@ import time
 
 class SalesManager:
     def talk(self):
+        pass
+
+
+class RealSalesManager(SalesManager):
+    def talk(self):
         print("Sales Manager ready to talk")
 
 
@@ -14,18 +19,18 @@ class Proxy(SalesManager):
     def talk(self):
         print("Proxy checking for Sales Manager availability")
         if self.busy == 'No':
-            self.sales = SalesManager()
-            time.sleep(0.1)
+            self.sales = RealSalesManager()
+            time.sleep(1)
             self.sales.talk()
         else:
-            time.sleep(0.1)
+            time.sleep(1)
             print("Sales Manager is busy")
 
 
 class NoTalkProxy(SalesManager):
     def talk(self):
         print("Proxy checking for Sales Manager availability")
-        time.sleep(0.1)
+        time.sleep(1)
         print("This Sales Manager will not talk to you", "whether he/she is busy or not")
 
 

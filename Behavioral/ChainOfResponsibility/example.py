@@ -1,24 +1,31 @@
 import abc
 from enum import IntEnum
 
+
 class PlanetEnum(IntEnum):
     MERCURY = 1
     VENUS = 2
     EARTH = 3
     MARS = 4
-    JUPITER = 5
-    SATURN = 6
-    URANUS = 7
-    NEPTUNE = 8
 
 
-class PlanetHandler(metaclass=abc.ABCMeta):
-    def __init__(self):
-        self.next_handler = None
-
+class Handler(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def handle_request(self, request):
         pass
+
+    @abc.abstractmethod
+    def set_next_handler(self, handler):
+        pass
+
+
+class PlanetHandler(Handler):
+    def __init__(self):
+        self.next_handler = None
+
+    def handle_request(self, request):
+        if self.next_handler is not None:
+            self.next_handler.handle_request(request)
 
     def set_next_handler(self, handler):
         self.next_handler = handler
@@ -74,4 +81,4 @@ if __name__ == '__main__':
     chain.handle_request(PlanetEnum.VENUS)
     chain.handle_request(PlanetEnum.MERCURY)
     chain.handle_request(PlanetEnum.EARTH)
-    chain.handle_request(PlanetEnum.JUPITER)
+    chain.handle_request(PlanetEnum.MARS)

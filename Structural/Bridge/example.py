@@ -1,22 +1,22 @@
 class PayoutService:
-#     amount = 0
+    #     amount = 0
     def __init__(self, gateway, amount):
         self.gateway = gateway
         self.amount = amount
 
     def pay(self):
-        self.gateway.paid(self.amount)
+        self.gateway.paid(self.price())
 
     def pay_with_bonus(self, bonus):
-        self.gateway.paid(self.price*(1 -bonus))
+        self.gateway.paid(self.price() * (1 - bonus))
 
     def price(self):
         return self.amount
 
 
 class Invoice(PayoutService):
-#     vat = 0
     def __init__(self, gateway, amount, vat):
+        super().__init__(gateway, amount)
         self.gateway = gateway
         self.amount = amount
         self.vat = vat
@@ -28,6 +28,7 @@ class Invoice(PayoutService):
 
 class Receipt(PayoutService):
     def __init__(self, gateway, amount):
+        super().__init__(gateway, amount)
         self.gateway = gateway
         self.amount = amount
         print("Receipt\n")
